@@ -14,7 +14,6 @@
   },
   "author": "Scratch Foundation",
   "workspaces": [
-    "packages/scratch-blocks",
     "packages/scratch-paint",
     "packages/scratch-vm",
     "packages/scratch-gui"
