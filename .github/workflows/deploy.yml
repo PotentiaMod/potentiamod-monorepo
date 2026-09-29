@@ -29,9 +29,12 @@ jobs:
 
       - name: Install dependencies
         run: npm run install
+        
+      - name: Initialize Git Submodules
+        run: git submodule update --init --recursive
 
       - name: Generate files
-        run: npm --workspace scratch-gui prepublish
+        run: npm run prepublish
 
       - name: Build
         run: cross-env NODE_ENV=production npm run build
