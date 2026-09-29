@@ -49,7 +49,7 @@ jobs:
             echo "DEPLOY_MESSAGE=A Beta Version from PotentiaMod ${GITHUB_SHA:0:7}" >> $GITHUB_ENV
           fi
 
-      - name: Checkout potentiamod.github.io
+      - name: Checkout potentiamod/home
         uses: actions/checkout@v4
         with:
           repository: PotentiaMod/home
