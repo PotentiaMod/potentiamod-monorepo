@@ -1,0 +1,26 @@
+{
+  "name": "potentiamod-monorepo",
+  "private": true,
+  "packageManager": "pnpm@12.6.0",
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "build:blocks": "pnpm --filter scratch-blocks build",
+    "build:vm": "pnpm --filter scratch-vm build",
+    "build:paint": "pnpm --filter scratch-paint build",
+    "build:gui": "pnpm --filter scratch-gui build",
+    "prepulish:gui": "pnpm --filter scratch-gui prepublish",
+    "build": "pnpm build:blocks && pnpm build:vm && pnpm build:paint && pnpm build:gui",
+    "start": "pnpm --filter scratch-gui start",
+    "clean": "pnpm -r exec rimraf dist build node_modules",
+    "fetch": "node packages/scratch-gui/scripts/prepublish.mjs",
+    "format::check": "pnpm prettier --check .",
+    "format::fix": "pnpm prettier --write ."
+  },
+  "devDependencies": {
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-prettier": "^5.5.6",
+    "prettier": "^3.9.5"
+  }
+}

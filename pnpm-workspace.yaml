@@ -1,0 +1,23 @@
+packages:
+  - 'packages/*'
+
+blockExoticSubdeps: false
+shamefullyHoist: true
+strictPeerDependencies: false
+autoInstallPeers: false
+publicHoistPattern:
+  - '*react*'
+  - '*react-dom*'
+  - 'refractor'
+allowBuilds:
+ bluetooth-hci-socket: true
+ bufferutil: true
+ chromedriver: true
+ core-js: true
+ es5-ext: true
+ parse-domain: true
+ preact: true
+ scratch-blocks: true
+ usb: true
+ utf-8-validate: true
+ yarn: true
