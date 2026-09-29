@@ -23,6 +23,7 @@
     "install": "npm run --workspaces install --legacy-peer-deps",
 	"uninstall": "rm -rf node_modules npm-lock.yaml",
     "reinstall": "rm -rf node_modules npm-lock.yaml && npm run --workspaces install --legacy-peer-deps",
+    "prepublish": "npm --workspace scratch-gui prepublish",
     "clean": "npm run --workspaces clean",
     "start": "npm --workspace scratch-gui start"
   },

@@ -28,13 +28,13 @@ jobs:
           node-version: 22
 
       - name: Install dependencies
-        run: npm run --workspaces install
+        run: npm run install
 
       - name: Generate files
         run: npm --workspace scratch-gui prepublish
 
       - name: Build
-        run: cross-env NODE_ENV=production npm run --workspaces build
+        run: cross-env NODE_ENV=production npm run build
 
       - name: Set deploy directory
         run: |
