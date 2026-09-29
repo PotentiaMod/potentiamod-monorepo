@@ -10,7 +10,7 @@
     "build:vm": "pnpm --filter scratch-vm build",
     "build:paint": "pnpm --filter scratch-paint build",
     "build:gui": "pnpm --filter scratch-gui build",
-    "prepulish:gui": "pnpm --filter scratch-gui prepublish",
+    "prepublish:gui": "pnpm --filter scratch-gui prepublish",
     "build": "pnpm build:blocks && pnpm build:vm && pnpm build:paint && pnpm build:gui",
     "start": "pnpm --filter scratch-gui start",
     "clean": "pnpm -r exec rimraf dist build node_modules",

@@ -45,7 +45,7 @@ jobs:
             echo "DEPLOY_DIR=studio" >> $GITHUB_ENV
             echo "DEPLOY_MESSAGE=New Release Version from PotentiaMod ${GITHUB_SHA:0:7}" >> $GITHUB_ENV
           else
-            echo "DEPLOY_DIR=studio" >> $GITHUB_ENV
+            echo "DEPLOY_DIR=beta" >> $GITHUB_ENV
             echo "DEPLOY_MESSAGE=A Beta Version from PotentiaMod ${GITHUB_SHA:0:7}" >> $GITHUB_ENV
           fi
 
