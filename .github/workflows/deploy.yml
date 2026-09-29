@@ -4,12 +4,12 @@ on:
   workflow_dispatch:
     inputs:
       target:
-        description: 'Deployment target: snapshot (online snapshot version) or release (online production version)'
+        description: 'Deployment target: beta or release'
         required: true
-        default: 'snapshot'
+        default: 'beta'
         type: choice
         options:
-          - snapshot
+          - beta
           - release
 
 jobs:
@@ -34,7 +34,7 @@ jobs:
         run: pnpm install --no-frozen-lockfile
 
       - name: Generate files
-        run: pnpm --filter Gui prepublish
+        run: pnpm --filter scratch-gui prepublish
 
       - name: Build
         run: pnpm build:gui
@@ -43,16 +43,16 @@ jobs:
         run: |
           if [ "${{ github.event.inputs.target }}" == "release" ]; then
             echo "DEPLOY_DIR=online" >> $GITHUB_ENV
-            echo "DEPLOY_MESSAGE=New Release Version from GaiaMod ${GITHUB_SHA:0:7}" >> $GITHUB_ENV
+            echo "DEPLOY_MESSAGE=New Release Version from PotentiaMod ${GITHUB_SHA:0:7}" >> $GITHUB_ENV
           else
-            echo "DEPLOY_DIR=snapshot" >> $GITHUB_ENV
-            echo "DEPLOY_MESSAGE=A Snapshot Version from GaiaMod ${GITHUB_SHA:0:7}" >> $GITHUB_ENV
+            echo "DEPLOY_DIR=beta" >> $GITHUB_ENV
+            echo "DEPLOY_MESSAGE=A Beta Version from PotentiaMod ${GITHUB_SHA:0:7}" >> $GITHUB_ENV
           fi
 
-      - name: Checkout GaiaMod
+      - name: Checkout potentiamod.github.io
         uses: actions/checkout@v4
         with:
-          repository: gaiawindwave90.github.io/GaiaMod
+          repository: PotentiaMod/potentiamod.github.io
           token: ${{ secrets.DEPLOY_TOKEN }}
           path: gh-pages
 
@@ -60,7 +60,7 @@ jobs:
         run: |
           cd gh-pages
           find "$DEPLOY_DIR" -mindepth 1 -delete
-          cp -r $GITHUB_WORKSPACE/Gui/build/* "$DEPLOY_DIR"/
+          cp -r $GITHUB_WORKSPACE/packages/scratch-gui/build/* "$DEPLOY_DIR"/
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add -A
