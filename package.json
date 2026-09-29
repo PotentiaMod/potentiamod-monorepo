@@ -1,26 +1,40 @@
 {
-  "name": "potentiamod-monorepo",
-  "private": true,
-  "packageManager": "pnpm@12.6.0",
-  "engines": {
-    "node": ">=18"
+  "name": "potentiamod-editor",
+  "version": "1.2.4",
+  "private": "true",
+  "description": "PotentiaMod editor mono-repository",
+  "keywords": [],
+  "homepage": "https://github.com/scratchfoundation/scratch-editor#readme",
+  "bugs": {
+    "url": "https://github.com/scratchfoundation/scratch-editor/issues"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/scratchfoundation/scratch-editor.git"
+  },
+  "author": "Scratch Foundation",
+  "workspaces": [
+    "packages/scratch-blocks",
+    "packages/scratch-paint",
+    "packages/scratch-vm",
+    "packages/scratch-gui"
+  ],
   "scripts": {
-    "build:blocks": "pnpm --filter scratch-blocks build",
-    "build:vm": "pnpm --filter scratch-vm build",
-    "build:paint": "pnpm --filter scratch-paint build",
-    "build:gui": "pnpm --filter scratch-gui build",
-    "prepublish:gui": "pnpm --filter scratch-gui prepublish",
-    "build": "pnpm build:blocks && pnpm build:vm && pnpm build:paint && pnpm build:gui",
-    "start": "pnpm --filter scratch-gui start",
-    "clean": "pnpm -r exec rimraf dist build node_modules",
-    "fetch": "node packages/scratch-gui/scripts/prepublish.mjs",
-    "format::check": "pnpm prettier --check .",
-    "format::fix": "pnpm prettier --write ."
+    "build": "cross-env NODE_ENV=production npm run --workspaces build",
+    "install": "npm run --workspaces install --legacy-peer-deps",
+	"uninstall": "rm -rf node_modules npm-lock.yaml",
+    "reinstall": "rm -rf node_modules npm-lock.yaml && npm run --workspaces install --legacy-peer-deps",
+    "clean": "npm run --workspaces clean",
+    "start": "npm --workspace scratch-gui start"
   },
   "devDependencies": {
-    "eslint-config-prettier": "^10.1.8",
-    "eslint-plugin-prettier": "^5.5.6",
-    "prettier": "^3.9.5"
+    "@semantic-release/exec": "7.1.0",
+    "@semantic-release/git": "10.0.1",
+    "conventional-changelog-angular": "8.3.1",
+    "cross-env": "7.0.3",
+    "globals": "16.5.0",
+    "npm": "10.9.9",
+    "semantic-release": "25.0.9",
+    "ts-node": "10.9.2"
   }
 }
